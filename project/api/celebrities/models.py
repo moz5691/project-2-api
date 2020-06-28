@@ -18,5 +18,8 @@ class Celebrity(db.Model):
         self.year = year
         self.category = category
 
+    def __repr__(self):
+        return f"{self.id}={self.name}-{self.pay}-{self.year}-{self.category}"
+
 
 # Name,Pay (USD millions),Year,Category

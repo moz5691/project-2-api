@@ -30,10 +30,12 @@
   $ docker-compose logs
   # recreate PostgreSQL db
   $ docker-compose exec apps python manage.py recreate_db
-  # seed 1st dataset 
+  # seed 1st dataset, geocode 
   $ docker-compose exec apps python manage.py seed_db1
-  # seed 2nd dataset 
+  # seed 2nd dataset, athletes
   $ docker-compose exec apps python manage.py seed_db2
+   # seed 3rd dataset, celebrities
+  $ docker-compose exec apps python manage.py seed_db3
   # Pytest
   $ docker-compose exec apps python -m pytest 'project/tests'  
 ```
@@ -126,6 +128,8 @@
 ```sh
 # drop all tables and recreate
 $ heroku run python manage.py recreate_db -a <app_name>
+# seed geocode table
+$ heroku run python manage.py seed_db1 -a <app_name>
 # seed athletes table
 $ heroku run python manage.py seed_db1 -a <app_name>
 # seed celebrities table

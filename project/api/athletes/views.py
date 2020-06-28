@@ -13,7 +13,7 @@ atheletes_namespace = Namespace("atheletes")
 
 ### add validation here
 athlete = atheletes_namespace.model(
-    'Athelete', {
+    'Athlete', {
         'id': fields.Integer(readOnly=True),
         'name': fields.String(),
         'nationality': fields.String(),
@@ -21,8 +21,24 @@ athlete = atheletes_namespace.model(
         'sport': fields.String(),
         'year': fields.Integer(),
         'earnings': fields.Float(),
+        'latitude': fields.Float(),
+        'longitude': fields.Float(),
         'created_date': fields.DateTime,
     })
+
+geocode = atheletes_namespace.model(
+    'Geocode', {
+        'country_code': fields.String(readOnly=True),
+        'country': fields.String(),
+        'latitude': fields.Float(),
+        'longitude': fields.Float(),
+        'created_date': fields.DateTime,
+    })
+
+meta_model = atheletes_namespace.model('AthleteGeo', {
+    'athlete': fields.Raw(athlete),
+    'goecode': fields.Raw(geocode),
+})
 
 
 class AthletesList(Resource):
@@ -37,10 +53,12 @@ class AthletesList(Resource):
         sport = post.get("sport")
         year = post.get("year")
         earnings = post.get("earnings")
+        country_code = post.get("country_code")
         response_object = {}
 
         ## TBD: add check to find duplicate atheletes.  if both name and year exists reject it.
-        add_athlete(name, nationality, current_rank, sport, year, earnings)
+        add_athlete(name, nationality, current_rank, sport, year, earnings,
+                    country_code)
 
         response_object = {'message': f'{name} was added!'}
         return response_object, 201
