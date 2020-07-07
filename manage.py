@@ -21,7 +21,7 @@ def recreate_db():
 
 @cli.command('seed_db1')
 def seed_db1():
-    with open(os.path.join(APP_DATA, 'geodata.csv')) as csvfile:
+    with open(os.path.join(APP_DATA, 'geodata_v1.csv')) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             print(row['country_code'], row['latitude'], row['longitude'],
@@ -37,7 +37,7 @@ def seed_db1():
 
 @cli.command('seed_db2')
 def seed_db2():
-    with open(os.path.join(APP_DATA, 'athletes.csv')) as csvfile:
+    with open(os.path.join(APP_DATA, 'athletes_v1.csv')) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             print(row['Name'], row['Nationality'], row['Current Rank'],
@@ -57,7 +57,7 @@ def seed_db2():
 
 @cli.command('seed_db3')
 def seed_db3():
-    with open(os.path.join(APP_DATA, 'celebrities.csv')) as csvfile:
+    with open(os.path.join(APP_DATA, 'celebrities_v1.csv')) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             print(row['Name'], row['Pay (USD millions)'], row['Year'],

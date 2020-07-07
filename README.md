@@ -131,9 +131,9 @@ $ heroku run python manage.py recreate_db -a <app_name>
 # seed geocode table
 $ heroku run python manage.py seed_db1 -a <app_name>
 # seed athletes table
-$ heroku run python manage.py seed_db1 -a <app_name>
-# seed celebrities table
 $ heroku run python manage.py seed_db2 -a <app_name>
+# seed celebrities table
+$ heroku run python manage.py seed_db3 -a <app_name>
 ```
 * END
 
